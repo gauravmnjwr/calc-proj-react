@@ -29,29 +29,37 @@ function Calculator() {
     setPrevValue(null);
   };
 
+
   const handleNum = (number) => {
     setNextValue(nextValue === "0" ? String(number) : nextValue + number);
   };
 
+  //handling when user inserts .
   const insertDot = () => {
     if (!/\./.test(nextValue)) {
       setNextValue(nextValue + ".");
     }
   };
+
+  //getting the percentage of the value
   const percentage = () => {
     setNextValue(parseFloat(nextValue) / 100);
     if (prevValue && nextValue === "") {
       setPrevValue(parseFloat(prevValue) / 100);
     }
   };
+  //changing - to + and vice versa
   const changeSign = () => {
     setNextValue(parseFloat(nextValue) * -1);
   };
+
+  //clearing data when user clicks AC
   const clearData = () => {
     setNextValue("0");
     setPrevValue(0);
   };
 
+  //handling particular operations on given taken value
   const handleOperation = (value) => {
     if (Number.isInteger(value)) {
       handleNum(parseInt(value, 10));
